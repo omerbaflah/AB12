@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AB12.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220526131345_InitCreate")]
+    [Migration("20220530094607_InitCreate")]
     partial class InitCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,8 @@ namespace AB12.Infrastructure.Migrations
 
             modelBuilder.Entity("AB12.Domain.Base.Schema.Order", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("ID")
+                        .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("ClientName")
@@ -42,14 +43,15 @@ namespace AB12.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("AB12.Domain.Base.Schema.OrderItem", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("ID")
+                        .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -58,16 +60,12 @@ namespace AB12.Infrastructure.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("OrderId1")
+                    b.Property<string>("OrderID")
+                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ProductId1")
+                    b.Property<string>("ProductID")
+                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<int>("Quantity")
@@ -76,18 +74,19 @@ namespace AB12.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("OrderId1");
+                    b.HasIndex("OrderID");
 
-                    b.HasIndex("ProductId1");
+                    b.HasIndex("ProductID");
 
                     b.ToTable("OrderItems", (string)null);
                 });
 
             modelBuilder.Entity("AB12.Domain.Base.Schema.Product", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("ID")
+                        .HasMaxLength(255)
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -113,7 +112,7 @@ namespace AB12.Infrastructure.Migrations
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("Products", (string)null);
                 });
@@ -121,12 +120,16 @@ namespace AB12.Infrastructure.Migrations
             modelBuilder.Entity("AB12.Domain.Base.Schema.OrderItem", b =>
                 {
                     b.HasOne("AB12.Domain.Base.Schema.Order", "Order")
-                        .WithMany("Items")
-                        .HasForeignKey("OrderId1");
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("AB12.Domain.Base.Schema.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId1");
+                        .WithMany("OrderItems")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Order");
 
@@ -135,7 +138,12 @@ namespace AB12.Infrastructure.Migrations
 
             modelBuilder.Entity("AB12.Domain.Base.Schema.Order", b =>
                 {
-                    b.Navigation("Items");
+                    b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("AB12.Domain.Base.Schema.Product", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

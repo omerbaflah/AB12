@@ -1,12 +1,12 @@
 ﻿namespace AB12.Domain.Base.Common
 {
-    public class AuditableEntity
+    public abstract class AuditableEntity
     {
         // uuid
-        public string Id { get; set; }
+        public string ID { get; set; }
         public AuditableEntity()
         {
-            Id = Guid.NewGuid().ToString().Replace("-", "");
+            ID = Guid.NewGuid().ToString().Replace("-", "");
         }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }

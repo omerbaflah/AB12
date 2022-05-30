@@ -25,8 +25,6 @@ namespace AB12.Domain.Persistence
             };
 
             context.Products.AddRange(products);
-            context.SaveChanges();
-
             
             context.SaveChanges();
         }

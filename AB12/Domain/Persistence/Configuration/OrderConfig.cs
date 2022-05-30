@@ -9,6 +9,11 @@ namespace AB12.Domain.Persistence.Configuration
         public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.ToTable("Orders");
+
+            builder.Property(p => p.ID).HasMaxLength(255);
+            
+            builder.HasMany<OrderItem>(o => o.OrderItems)
+                   .WithOne(oi => oi.Order);
         }
     }
 }

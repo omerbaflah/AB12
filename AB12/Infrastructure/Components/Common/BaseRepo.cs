@@ -21,7 +21,7 @@ namespace AB12.Infrastructure.Components.Common
         {
             return await _context.Set<T>()
                 .Where(x => x.DeletedAt == null)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .FirstOrDefaultAsync(x => x.ID == id);
         }
 
         public virtual async Task<List<T>> GetAllAsync()
