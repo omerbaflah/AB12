@@ -1,4 +1,5 @@
 ﻿using AB12.Domain.Base.Schema;
+using AB12.Infrastructure.Components;
 using AB12.Services.Components;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,15 +8,17 @@ namespace AB12.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class OrderController : ControllerBase
+    public class OrdersController : ControllerBase
     {
-        private readonly ILogger<OrderController> _logger;
+        private readonly ILogger<OrdersController> _logger;
         private readonly OrderService _service;
+        private readonly OrderRepo _repo;
 
-        public OrderController(ILogger<OrderController> logger, OrderService service)
+        public OrdersController(ILogger<OrdersController> logger, OrderService service, OrderRepo repo)
         {
             _logger = logger;
             _service = service;
+            _repo = repo;
         }
 
         [HttpGet()]
@@ -89,7 +92,7 @@ namespace AB12.Controllers
         {
             try
             {
-                var order = await _service.GetByIdAsync(id);
+                var order = await _repo.GetByIdAsync(id);
 
                 if (order == null)
                 {
