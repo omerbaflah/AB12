@@ -6,6 +6,12 @@ namespace AB12.Domain.Persistence
     {
         public static void Initialize(AppDbContext context)
         {
+            InitializeProducts(context);
+            InitializeOrders(context);
+        }
+
+        public static void InitializeProducts(AppDbContext context)
+        {
             // Look for any students.
             if (context.Products.Any())
             {
@@ -25,7 +31,32 @@ namespace AB12.Domain.Persistence
             };
 
             context.Products.AddRange(products);
-            
+
+            context.SaveChanges();
+        }
+
+        public static void InitializeOrders(AppDbContext context)
+        {
+            // Look for any orders.
+            if (context.Orders.Any())
+            {
+                return;   // DB has been seeded
+            }
+
+            var orders = new Order[]
+            {
+                new Order{ ClientName="Salah", Status=OrderStatus.New},
+                new Order{ ClientName="Omer", Status=OrderStatus.InProgress},
+                new Order{ ClientName="Ali", Status=OrderStatus.Completed},
+                new Order{ ClientName="Mohhamed", Status=OrderStatus.New},
+                new Order{ ClientName="Ahmed", Status=OrderStatus.InProgress},
+                new Order{ ClientName="Kahled", Status=OrderStatus.Completed},
+                new Order{ ClientName="Mazen", Status=OrderStatus.New},
+                new Order{ ClientName="Mahmoud", Status=OrderStatus.InProgress},
+            };
+
+            context.Orders.AddRange(orders);
+
             context.SaveChanges();
         }
     }
