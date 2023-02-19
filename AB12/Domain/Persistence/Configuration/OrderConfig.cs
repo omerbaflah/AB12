@@ -11,7 +11,9 @@ namespace AB12.Domain.Persistence.Configuration
             builder.ToTable("Orders");
 
             builder.Property(p => p.ID).HasMaxLength(255);
-            
+
+            builder.Property(p => p.ClientName).HasMaxLength(255);
+
             builder.HasMany<OrderItem>(o => o.OrderItems)
                    .WithOne(oi => oi.Order);
         }
