@@ -16,6 +16,8 @@ builder.Services.AddControllers();
 var conStr = builder.Configuration.GetConnectionString("MySql");
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(conStr, ServerVersion.AutoDetect(conStr))
+    .EnableSensitiveDataLogging()
+                .EnableDetailedErrors()
 );
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -46,6 +48,7 @@ using (var scope = app.Services.CreateScope())
 
     var context = services.GetRequiredService<AppDbContext>();
     context.Database.EnsureCreated();
+    //context.Database.EnsureCreated();
     DbInitializer.Initialize(context);
 }
 
