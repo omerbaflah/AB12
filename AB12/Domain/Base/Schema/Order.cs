@@ -6,7 +6,7 @@ namespace AB12.Domain.Base.Schema
     {
         public string ClientName { get; set; }
         public OrderStatus Status { get; set; }
-        public virtual ICollection<OrderItem> OrderItems { get; set; }
+        public virtual ICollection<OrderItem>? OrderItems { get; set; }
     }
 
     public enum OrderStatus
