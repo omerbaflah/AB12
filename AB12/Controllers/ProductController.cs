@@ -36,7 +36,7 @@ namespace AB12.Controllers
         {
             try
             {
-                var result = _service.GetByIdAsync(id);
+                var result = await _service.GetByIdAsync(id);
                 return Ok(result);
             }
             catch (Exception ex)
