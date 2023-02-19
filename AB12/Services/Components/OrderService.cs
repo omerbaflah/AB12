@@ -18,34 +18,34 @@ namespace AB12.Services.Components
             _repo = repo;
         }
 
-        public async Task<List<Order>> GetListAsync()
+        public async Task<List<OrderResult>> GetListAsync()
         {
             var orders = await _repo.GetAllAsync();
-            return _mapper.Map<List<Order>>(orders);
+            return _mapper.Map<List<OrderResult>>(orders);
         }
 
-        public async Task<Order> GetByIdAsync(string id)
+        public async Task<OrderResult> GetByIdAsync(string id)
         {
             var order = await _repo.GetByIdAsync(id);
-            return _mapper.Map<Order>(order);
+            return _mapper.Map<OrderResult>(order);
         }
 
-        public async Task<Order> CreateAsync(Order entity)
+        public async Task<OrderResult> CreateAsync(Order entity)
         {
             var order = await _repo.CreateAsync(entity);
-            return _mapper.Map<Order>(order);
+            return _mapper.Map<OrderResult>(order);
         }
 
-        public async Task<Order> UpdateAsync(Order entity)
+        public async Task<OrderResult> UpdateAsync(Order entity)
         {
             var order = await _repo.UpdateAsync(entity);
-            return _mapper.Map<Order>(order);
+            return _mapper.Map<OrderResult>(order);
         }
 
-        public async Task<Order> DeleteAsync(Order entity)
+        public async Task<OrderResult> DeleteAsync(Order entity)
         {
             var order = await _repo.DeleteAsync(entity);
-            return _mapper.Map<Order>(order);
+            return _mapper.Map<OrderResult>(order);
         }
     }
 }
