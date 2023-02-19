@@ -5,12 +5,12 @@ namespace AB12.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
-        private readonly ILogger<ProductController> _logger;
+        private readonly ILogger<ProductsController> _logger;
         private readonly ProductService _service;
 
-        public ProductController(ILogger<ProductController> logger, ProductService service)
+        public ProductsController(ILogger<ProductsController> logger, ProductService service)
         {
             _logger = logger;
             _service = service;
