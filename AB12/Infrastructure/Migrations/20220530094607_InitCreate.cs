@@ -10,16 +10,16 @@ namespace AB12.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("MySql:CharSet", "latin1");
 
             migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
                 {
                     ID = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ClientName = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                        .Annotation("MySql:CharSet", "latin1"),
+                    ClientName = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "latin1"),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -29,18 +29,18 @@ namespace AB12.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.ID);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("MySql:CharSet", "latin1");
 
             migrationBuilder.CreateTable(
                 name: "Products",
                 columns: table => new
                 {
                     ID = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                        .Annotation("MySql:CharSet", "latin1"),
                     Name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                        .Annotation("MySql:CharSet", "latin1"),
                     Description = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                        .Annotation("MySql:CharSet", "latin1"),
                     Price = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -51,18 +51,18 @@ namespace AB12.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.ID);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("MySql:CharSet", "latin1");
 
             migrationBuilder.CreateTable(
                 name: "OrderItems",
                 columns: table => new
                 {
                     ID = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                        .Annotation("MySql:CharSet", "latin1"),
                     ProductID = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                        .Annotation("MySql:CharSet", "latin1"),
                     OrderID = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
+                        .Annotation("MySql:CharSet", "latin1"),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -84,7 +84,7 @@ namespace AB12.Infrastructure.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                .Annotation("MySql:CharSet", "latin1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderID",
