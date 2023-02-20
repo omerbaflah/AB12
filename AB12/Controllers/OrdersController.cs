@@ -1,4 +1,4 @@
-using AB12.Domain.Base.Schema;
+﻿using AB12.Domain.Base.Schema;
 using AB12.Infrastructure.Components;
 using AB12.Services.Components;
 using Microsoft.AspNetCore.Http;
@@ -56,6 +56,11 @@ namespace AB12.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+
                 var result = await _service.CreateAsync(order);
                 return Ok(result);
             }
@@ -99,7 +104,12 @@ namespace AB12.Controllers
                     return NotFound();
                 }
 
-                await _service.DeleteAsync(order);
+                var result = await _service.DeleteAsync(order);
+
+                if (!result)
+                {
+                    return BadRequest();
+                }
 
                 return NoContent();
             }
