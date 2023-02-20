@@ -1,4 +1,4 @@
-﻿using AB12.Domain.Base.Schema;
+using AB12.Domain.Base.Schema;
 using AB12.Infrastructure.Components;
 using AB12.Services.Components;
 using Microsoft.AspNetCore.Http;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AB12.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class OrdersController : ControllerBase
     {
         private readonly ILogger<OrdersController> _logger;
