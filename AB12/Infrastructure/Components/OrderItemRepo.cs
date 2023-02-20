@@ -23,5 +23,13 @@ namespace AB12.Infrastructure.Components
                 .Include(x => x.Order)
                 .ToListAsync();
         }
+
+        public override async Task<OrderItem> GetByIdAsync(string id)
+        {
+            return await _context.Set<OrderItem>()
+                .Include(x => x.Product)
+                .Include(x => x.Order)
+                .FirstOrDefaultAsync(x => x.ID == id);
+        }
     }
 }
