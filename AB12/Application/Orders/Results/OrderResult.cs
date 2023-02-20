@@ -2,7 +2,7 @@
 using AB12.Domain.Base.Schema;
 using AutoMapper;
 
-namespace AB12.Application.Products.Results
+namespace AB12.Application.Orders.Results
 {
     public class OrderResult : IMapFrom<Order>
     {

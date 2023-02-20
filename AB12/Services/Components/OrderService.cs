@@ -1,4 +1,4 @@
-﻿using AB12.Application.Products.Results;
+﻿using AB12.Application.Orders.Results;
 using AB12.Domain.Base.Schema;
 using AB12.Infrastructure.Components;
 using AutoMapper;
