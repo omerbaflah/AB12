@@ -42,10 +42,9 @@ namespace AB12.Services.Components
             return _mapper.Map<OrderResult>(order);
         }
 
-        public async Task<OrderResult> DeleteAsync(Order entity)
+        public async Task<bool> DeleteAsync(Order entity)
         {
-            var order = await _repo.DeleteAsync(entity);
-            return _mapper.Map<OrderResult>(order);
+            return await _repo.DeleteAsync(entity);
         }
     }
 }
