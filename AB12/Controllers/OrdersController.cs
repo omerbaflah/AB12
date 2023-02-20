@@ -21,7 +21,7 @@ namespace AB12.Controllers
             _repo = repo;
         }
 
-        [HttpGet()]
+        [HttpGet]
         public async Task<IActionResult> GetList()
         {
             try
@@ -57,7 +57,7 @@ namespace AB12.Controllers
             }
         }
 
-        [HttpPost()]
+        [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] Order order)
         {
             try
