@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AB12.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
         private readonly ILogger<ProductsController> _logger;
