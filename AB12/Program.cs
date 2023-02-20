@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using TanvirArjel.Extensions.Microsoft.DependencyInjection;
 using AutoMapper;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,9 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddServicesOfAllTypes(Assembly.GetExecutingAssembly());
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
 var conStr = builder.Configuration.GetConnectionString("MySql");
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(conStr, ServerVersion.AutoDetect(conStr))
